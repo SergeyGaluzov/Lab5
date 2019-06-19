@@ -4,7 +4,7 @@ using namespace std;
 class Elem
 {
 public:
-	//friend class Tree;
+	friend class Tree;
 	Elem(string name);
 	Elem(char name);
 	Elem *left;

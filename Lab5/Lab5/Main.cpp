@@ -9,4 +9,5 @@ int main()
 {
 	Tree AST;
 	vector <Elem *> elems_list = function();
+	AST.fill_the_tree(elems_list);
 }
