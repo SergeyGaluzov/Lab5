@@ -2,6 +2,7 @@
 #include "Elem.h"
 #include <iostream>
 #include <vector>
+#include <map>
 double make_math_operation(double left, string data, double right)
 {
 	if (data == "/") return left / right;
@@ -9,23 +10,38 @@ double make_math_operation(double left, string data, double right)
 	if (data == "-") return left - right;
 	if (data == "+") return left + right;
 }
-double Tree::calc_result(Elem *top)
-{
-	if (!top->left && !top->right)
-	{
-		top->result = stoi(top->data);
-		return top->result;
-	}
-	top->result = make_math_operation(calc_result(top->left), top->data, calc_result(top->right));
-	return top->result;
-}
-Tree::Tree()
+Tree::Tree(map <string, double> &database)
 {
 	top = nullptr;
+	this->database = database;
 }
 Tree::Tree(Elem *top)
 {
 	this->top = top;
+}
+void Tree::infix(Elem *top)
+{
+	if (!top) return;
+	infix(top->left);
+	//cout << top->data;
+	infix(top->right);
+}
+double Tree::calc_result(Elem *top)
+{
+	if (!top->left && !top->right)
+	{
+		if (isdigit(top->data[0]))
+		{
+			top->result = stoi(top->data);
+		}
+		else
+		{
+			top->result = database[top->data];
+		}
+		return top->result;
+	}
+	top->result = make_math_operation(calc_result(top->left), top->data, calc_result(top->right));
+	return top->result;
 }
 void Tree::fill_the_tree(vector <Elem *> & list_of_elems)
 {

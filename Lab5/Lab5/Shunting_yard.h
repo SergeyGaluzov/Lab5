@@ -24,16 +24,26 @@ int priority(char symbol)
 		return 3;
 	};
 }
-vector <Elem *> function()
+vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 {
-	string str, str_RPN;
+	string str_RPN;
+	bool expression = false;
 	stack <char> stack_of_operators;
 	queue <char> queue_of_operands;
 	vector <Elem*> list_of_elems;
 	string temp_name;
-	getline(cin, str);
 	for (int i = 0; i < str.length(); i++)
 	{
+		if (str[i] != '=' && !expression && isalpha(str[i]))
+		{
+			str_variable += str[i];
+			continue;
+		}
+		if (str[i] == '=')
+		{
+			expression = true;
+			continue;
+		}
 		if (!isalnum(str[i]))
 		{
 			if (!temp_name.empty())
@@ -102,6 +112,6 @@ vector <Elem *> function()
 		list_of_elems.push_back(new Elem(stack_of_operators.top()));
 		stack_of_operators.pop();
 	}
-	cout << str_RPN << endl;
+	//cout << str_RPN << endl;
 	return list_of_elems;
 }
