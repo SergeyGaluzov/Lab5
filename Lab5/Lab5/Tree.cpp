@@ -19,20 +19,13 @@ Tree::Tree(Elem *top)
 {
 	this->top = top;
 }
-void Tree::infix(Elem *top)
-{
-	if (!top) return;
-	infix(top->left);
-	//cout << top->data;
-	infix(top->right);
-}
 double Tree::calc_result(Elem *top)
 {
 	if (!top->left && !top->right)
 	{
 		if (isdigit(top->data[0]))
 		{
-			top->result = stoi(top->data);
+			top->result = stod(top->data);
 		}
 		else
 		{

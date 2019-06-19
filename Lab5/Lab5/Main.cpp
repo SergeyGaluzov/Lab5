@@ -2,6 +2,10 @@
 #include <vector>
 #include <map>
 #include <fstream>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <fstream>
 #include "Elem.h"
 #include "Tree.h"
 #include "Shunting_yard.h"
@@ -19,7 +23,6 @@ int main()
 		Tree AST(database);
 		vector <Elem *> elems_list = function_of_shunting_yard(str, str_variable);
 		AST.fill_the_tree(elems_list);
-		AST.infix(AST.top);
 		double res = AST.calc_result(AST.top);
 		database.insert(make_pair(str_variable, res));
 		str_variable = "";

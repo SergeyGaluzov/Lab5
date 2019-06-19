@@ -44,7 +44,7 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 			expression = true;
 			continue;
 		}
-		if (!isalnum(str[i]))
+		if (!isalnum(str[i]) && str[i] != '.')
 		{
 			if (!temp_name.empty())
 			{
@@ -98,11 +98,14 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 		else
 		{
 			temp_name += str[i];
-			if (i == str.length() - 1)
+			if (str[i] != '.')
 			{
-				str_RPN += temp_name;
-				list_of_elems.push_back(new Elem(temp_name));
-				temp_name = "";
+				if (i == str.length() - 1)
+				{
+					str_RPN += temp_name;
+					list_of_elems.push_back(new Elem(temp_name));
+					temp_name = "";
+				}
 			}
 		}
 	}
@@ -112,6 +115,5 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 		list_of_elems.push_back(new Elem(stack_of_operators.top()));
 		stack_of_operators.pop();
 	}
-	//cout << str_RPN << endl;
 	return list_of_elems;
 }

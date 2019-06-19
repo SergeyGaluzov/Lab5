@@ -1,4 +1,5 @@
-a = 4
-b = a + 1
-c = a - b + a
-d = a+( b-c/ 2)
+a = 4.5
+bb = a + 1
+c = a - bb + a
+d = a+( bb-c/ 2)
+e = a-bb +c-d
