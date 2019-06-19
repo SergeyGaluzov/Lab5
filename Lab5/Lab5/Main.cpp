@@ -1,0 +1,12 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include "Elem.h"
+#include "Tree.h"
+#include "Shunting_yard.h"
+using namespace std;
+int main()
+{
+	Tree AST;
+	vector <Elem *> elems_list = function();
+}
