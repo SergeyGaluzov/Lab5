@@ -9,6 +9,7 @@ double make_math_operation(double left, string data, double right)
 	if (data == "*") return left * right;
 	if (data == "-") return left - right;
 	if (data == "+") return left + right;
+	if (data == "^") return pow(left, right);
 }
 Tree::Tree(map <string, double> &database)
 {

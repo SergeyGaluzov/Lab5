@@ -2,4 +2,5 @@ a = 4.5
 bb = a + 1
 c = a - bb + a
 d = a+( bb-c/ 2)
-e = a-bb +c-d
+e = (a+bb)^3
+print (a+bb)*10

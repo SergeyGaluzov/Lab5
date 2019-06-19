@@ -22,11 +22,12 @@ int priority(char symbol)
 	case '*':
 	case '/':
 		return 3;
+	case  '^':
+		return 4;
 	};
 }
 vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 {
-	string str_RPN;
 	bool expression = false;
 	stack <char> stack_of_operators;
 	queue <char> queue_of_operands;
@@ -34,7 +35,7 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 	string temp_name;
 	for (int i = 0; i < str.length(); i++)
 	{
-		if (str[i] != '=' && !expression && isalpha(str[i]))
+		if (str[i] != '=' && !expression && isalpha(str[i]) && str_variable != "print")
 		{
 			str_variable += str[i];
 			continue;
@@ -48,7 +49,6 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 		{
 			if (!temp_name.empty())
 			{
-				str_RPN += temp_name;
 				list_of_elems.push_back(new Elem(temp_name));
 				temp_name = "";
 			}
@@ -62,7 +62,6 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 			{
 				while (stack_of_operators.top() != '(')
 				{
-					str_RPN += stack_of_operators.top();
 					list_of_elems.push_back(new Elem(stack_of_operators.top()));
 					stack_of_operators.pop();
 				}
@@ -82,7 +81,6 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 					{
 						while (priority(str[i]) <= priority(stack_of_operators.top()))
 						{
-							str_RPN += stack_of_operators.top();
 							list_of_elems.push_back(new Elem(stack_of_operators.top()));
 							stack_of_operators.pop();
 							if (stack_of_operators.empty()) break;
@@ -102,7 +100,6 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 			{
 				if (i == str.length() - 1)
 				{
-					str_RPN += temp_name;
 					list_of_elems.push_back(new Elem(temp_name));
 					temp_name = "";
 				}
@@ -111,7 +108,6 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 	}
 	while (!stack_of_operators.empty())
 	{
-		str_RPN += stack_of_operators.top();
 		list_of_elems.push_back(new Elem(stack_of_operators.top()));
 		stack_of_operators.pop();
 	}
