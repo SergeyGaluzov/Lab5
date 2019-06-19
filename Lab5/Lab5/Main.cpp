@@ -10,4 +10,6 @@ int main()
 	Tree AST;
 	vector <Elem *> elems_list = function();
 	AST.fill_the_tree(elems_list);
+	double res = AST.calc_result(AST.top);
+	cout << '\n' << res << endl;
 }

@@ -2,6 +2,23 @@
 #include "Elem.h"
 #include <iostream>
 #include <vector>
+double make_math_operation(double left, string data, double right)
+{
+	if (data == "/") return left / right;
+	if (data == "*") return left * right;
+	if (data == "-") return left - right;
+	if (data == "+") return left + right;
+}
+double Tree::calc_result(Elem *top)
+{
+	if (!top->left && !top->right)
+	{
+		top->result = stoi(top->data);
+		return top->result;
+	}
+	top->result = make_math_operation(calc_result(top->left), top->data, calc_result(top->right));
+	return top->result;
+}
 Tree::Tree()
 {
 	top = nullptr;
