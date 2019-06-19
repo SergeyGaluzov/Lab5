@@ -1,0 +1,15 @@
+a = 4.5
+bb = a + 1
+c = a - bb + a
+d = a+( bb-c/ 2)
+bb = 0
+e = (a+bb)^3
+print (a+bb)*10
+
+The result of operation "(a+bb)*10" is: 45
+
+a = 4.5
+bb = 0
+c = 3.5
+d = 8.25
+e = 91.125

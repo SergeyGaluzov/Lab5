@@ -26,7 +26,7 @@ int priority(char symbol)
 		return 4;
 	};
 }
-vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
+vector <Elem *> function_of_shunting_yard(string &str, string &str_variable, map <string, double> & database)
 {
 	bool expression = false;
 	stack <char> stack_of_operators;
@@ -95,6 +95,7 @@ vector <Elem *> function_of_shunting_yard(string &str, string &str_variable)
 		}
 		else
 		{
+			if (str[i] == '0' && str[i - 1] == '*') database.insert(make_pair(str_variable, 0));
 			temp_name += str[i];
 			if (str[i] != '.')
 			{
