@@ -23,7 +23,6 @@ int main()
 		double res = AST.calc_result(AST.top);
 		database.insert(make_pair(str_variable, res));
 		str_variable = "";
-		//	cout << '\n' << res << endl;
 	}
 	cout << endl;
 	for (auto it = database.begin(); it != database.end(); it++)
